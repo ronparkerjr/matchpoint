@@ -1,0 +1,45 @@
+# Match Point Pickleball Club
+
+> The world's largest indoor pickleball destination — 38 courts in Columbus, Ohio. Memberships, leagues, lessons, table tennis, badminton, and Trackman golf.
+
+Match Point Pickleball Club is located at 350 McCormick Blvd, Columbus, OH. Contact: 614-569-2556 / support@matchpointpickleballclub.com.
+
+## Pages
+
+- [Home](/): Club overview and featured programs.
+- [About](/about): Our story and mission.
+- [Our Facility](/our-facility): Tour of the 38-court indoor facility.
+- [Pickleball](/pickleball): Pickleball programs and open play.
+- [Pickleball Instruction](/pickleball-instruction): Lessons and clinics in Columbus, OH.
+- [Leagues](/leagues): League schedules and signups.
+- [Reserve a Court](/reserve-a-court): Book court time.
+- [Player Showcase](/player-showcase): Featured club players.
+- [Table Tennis](/table-tennis): Table tennis programs.
+- [Badminton](/badminton): Badminton programs.
+- [Trackman Golf](/trackman-golf): Indoor golf simulators.
+- [PlaySight](/playsight): SmartCourts technology overview.
+- [Photos](/photos): Facility and event photos.
+- [Videos](/videos): Highlight reels and player content.
+- [Event Results](/event-results): Tournament and league results.
+- [Private Events](/private-events): Host private events at the club.
+- [Sponsors](/sponsors): Club sponsors and partners.
+- [OrthoAlliance](/ortho-alliance): Featured medical partner.
+
+- [Announcements](/announcements): Club news and updates.
+- [Preferred Hotels](/preferred-hotels): Partner hotels near the club; use code MPpoint for special rates.
+- [Employment](/employment): Open positions.
+- [FAQ](/faq): Frequently asked questions.
+- [Contact Us](/contact-us): Get in touch.
+
+## Memberships
+
+- [Memberships Overview](/memberships): All membership plans and pricing.
+- [Drop-In](/memberships/drop-in): Single-visit access.
+- [Elite](/memberships/elite): Individual elite membership.
+- [Elite Couple](/memberships/elite-couple): Two-person elite plan.
+- [Elite Family](/memberships/elite-family): Family elite plan.
+
+- [Silver Sneakers Plus](/memberships/silver-sneakers-plus): Enhanced Silver Sneakers program.
+- [Badminton Member](/memberships/badminton-member): Badminton membership.
+- [Table Tennis Member](/memberships/table-tennis-member): Table tennis membership.
+- [Corporate Memberships](/corp-memberships): Plans for businesses.
