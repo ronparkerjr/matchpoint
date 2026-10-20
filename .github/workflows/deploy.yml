@@ -18,6 +18,7 @@ jobs:
           cache: npm
       - uses: actions/configure-pages@v5
       - run: npm install
+      - run: curl -fsSL https://bun.sh/install | bash
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
