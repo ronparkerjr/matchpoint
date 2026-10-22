@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { motion } from "framer-motion";
 import { Building2, Heart, Users, Trophy, Dumbbell, Target, Phone, Mail, MapPin } from "lucide-react";
 import Layout from "@/components/Layout";
@@ -59,7 +60,7 @@ const CorpMemberships = () => {
       <PageHero
         title="Corporate Memberships"
         subtitle="Elevate your employee benefits with Central Ohio's premier multi-sport facility"
-        image="/images/corp-hero.jpg"
+        image={publicAsset("/images/corp-hero.jpg")}
       />
 
       {/* Intro Section */}
@@ -107,7 +108,7 @@ const CorpMemberships = () => {
               className="rounded-lg overflow-hidden border border-border-subtle"
             >
               <img loading="lazy" decoding="async"
-                src="/images/corp-team1.jpg"
+                src={publicAsset("/images/corp-team1.jpg")}
                 alt="Corporate team celebrating at Match Point"
                 className="w-full h-80 md:h-96 object-cover"
               />
@@ -162,7 +163,7 @@ const CorpMemberships = () => {
               className="rounded-lg overflow-hidden border border-border-subtle"
             >
               <img loading="lazy" decoding="async"
-                src="/images/corp-team2.jpg"
+                src={publicAsset("/images/corp-team2.jpg")}
                 alt="Employees enjoying table tennis at Match Point"
                 className="w-full h-80 md:h-96 object-cover"
               />
@@ -253,7 +254,7 @@ const CorpMemberships = () => {
             <div className="text-center space-y-4">
               <div className="mb-6">
                 <img loading="lazy" decoding="async"
-                  src="/images/jen-foley.png"
+                  src={publicAsset("/images/jen-foley.png")}
                   alt="Jen Foley - Director of Corporate Relations"
                   className="w-56 md:w-64 mx-auto rounded-lg object-cover"
                 />

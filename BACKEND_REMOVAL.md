@@ -46,17 +46,27 @@ its users/data/secrets, deployed edge functions, or externally scheduled jobs.
 Those were not inspected or changed; an owner must audit/retire them separately.
 The deleted definitions remain recoverable from Git history.
 
-Existing deployment settings use Vite base `/matchpoint/`, while BrowserRouter
-and many public asset paths are rooted at `/`. The repository has no Pages SPA
-fallback. Subpath hosting and deep-link refresh behavior require a separate
-deployment decision and verification; they are not changed by backend removal.
-Canonical SEO URLs also still target the existing custom domain.
+The live Pages site was inspected on October 22, 2026 and its browser console
+confirmed `Error: supabaseUrl is required.` in the deployed main bundle. The
+Supabase removal eliminates that startup dependency; it must be merged and
+deployed before the live site changes.
+
+Pages uses Vite base `/matchpoint/`. BrowserRouter now uses that same basename;
+local images, video, downloads, manifest icons/start URL, and remaining plain
+internal links also respect it. Postbuild generates entry documents for all 56
+declared routes (including nearby-city pages), plus a 404 fallback, so valid
+direct visits and refreshes do not depend on server SPA rewrites. These documents
+are app entrypoints, not server-rendered content. Canonical SEO URLs still target
+the existing custom domain. A future domain-root deployment must set Vite base
+to `/` and rebuild.
 
 ## Local validation
 
 - Production Vite build and sitemap generation passed. The build still warns
   about a JavaScript chunk larger than 500 kB.
-- Vitest: 4 tests passed, including all three unavailable form variants.
+- Vitest: 7 tests passed, including all three unavailable form variants, deployment
+  asset path checks, and a full-app direct contact URL/navigation test at the Pages
+  base. The app test also confirmed a pre-existing React fetchPriority warning.
 - TypeScript app check (`tsc --noEmit -p tsconfig.app.json`) passed.
 - Lint: 3 existing errors in unchanged `ui/command.tsx`, `ui/textarea.tsx`, and
   `tailwind.config.ts`, plus 7 existing fast-refresh warnings.
@@ -65,9 +75,12 @@ Canonical SEO URLs also still target the existing custom domain.
 - The npm lockfile had drifted from the existing package manifest (including
   router, Helmet, React plugin, Autoprefixer, and Lovable tagger declarations).
   It is now synchronized; those manifest versions were not changed here.
-- Browser screenshot verification was unavailable because the bundled Playwright
-  browser executable is missing. Public content/styles were checked in the diff;
-  form behavior was exercised with React Testing Library.
+- Browser screenshot verification of the repaired local build was unavailable:
+  the bundled Playwright executable is missing and the in-app browser times out
+  reaching the sandbox's local preview. The in-app browser did confirm the live
+  startup error. Public content/styles were checked in the diff; form and routing
+  behavior were exercised with React Testing Library. Production deployment still
+  needs a browser check after approval.
 
 The branch is for review only. No merge or production deployment is authorized
 by this change.

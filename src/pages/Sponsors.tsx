@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
@@ -17,7 +18,7 @@ type Sponsor = {
 const presentingSponsors: Sponsor[] = [
   {
     name: "Fronteras",
-    video: "/videos/sponsors/fronteras-ad.mp4",
+    video: publicAsset("/videos/sponsors/fronteras-ad.mp4"),
     blurb: "Proud presenting partner of Match Point Pickleball Club.",
   },
 ];
@@ -38,7 +39,7 @@ const premierSponsors: Sponsor[] = [
   },
   {
     name: "OrthoAlliance",
-    logo: "/images/oa-logo.png",
+    logo: publicAsset("/images/oa-logo.png"),
     logoClassName: "bg-white p-4",
     blurb:
       "Official Sports Medicine and Wellness Partner of Match Point Pickleball Club — proud sponsor of OrthoAlliance Court 36, providing orthopedic care, sports medicine, and on-site athletic training support.",
@@ -47,7 +48,7 @@ const premierSponsors: Sponsor[] = [
   },
   {
     name: "G&J Pepsi",
-    logo: "/images/sponsors/gj-pepsi-primary.svg",
+    logo: publicAsset("/images/sponsors/gj-pepsi-primary.svg"),
     logoClassName: "bg-white p-4",
     blurb:
       "Official Beverage Partner of Match Point Pickleball Club — proud sponsor of the G&J Pepsi Championship Court 38. A family-owned, independent Pepsi bottler serving Columbus and Ohio since 1925.",
@@ -190,7 +191,7 @@ const Sponsors = () => {
               <Link to="/sponsorship-deck">View Sponsorship Deck</Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <a href="/downloads/match-point-sponsorship-deck.pdf" download>
+              <a href={publicAsset("/downloads/match-point-sponsorship-deck.pdf")} download>
                 <Download size={16} className="mr-2" /> Download Deck (PDF)
               </a>
             </Button>

@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { motion } from "framer-motion";
 import { Trophy } from "lucide-react";
 import Layout from "@/components/Layout";
@@ -6,7 +7,7 @@ import PageHero from "@/components/PageHero";
 const EventResults = () => {
   return (
     <Layout>
-      <PageHero title="Event Results" subtitle="Scores, standings, and results from Match Point events." image="/images/event-results-hero.jpg" />
+      <PageHero title="Event Results" subtitle="Scores, standings, and results from Match Point events." image={publicAsset("/images/event-results-hero.jpg")} />
 
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4 max-w-4xl text-center">

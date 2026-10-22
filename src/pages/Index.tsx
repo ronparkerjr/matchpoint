@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -17,10 +18,10 @@ import {
 
 // --- Static homepage data ---
 const galleryImages = [
-  { src: "/images/facility-aerial.jpg", alt: "Aerial view of Match Point's 38 indoor pickleball courts" },
-  { src: "/images/facility-courts.png", alt: "Championship pickleball courts at Match Point Columbus" },
-  { src: "/images/community-photo.jpg", alt: "Players in the Match Point community" },
-  { src: "/images/facility-photo.jpg", alt: "Inside the Match Point Pickleball Club facility" },
+  { src: publicAsset("/images/facility-aerial.jpg"), alt: "Aerial view of Match Point's 38 indoor pickleball courts" },
+  { src: publicAsset("/images/facility-courts.png"), alt: "Championship pickleball courts at Match Point Columbus" },
+  { src: publicAsset("/images/community-photo.jpg"), alt: "Players in the Match Point community" },
+  { src: publicAsset("/images/facility-photo.jpg"), alt: "Inside the Match Point Pickleball Club facility" },
 ];
 
 const testimonials = [
@@ -89,10 +90,10 @@ const newsTeasers = [
 ];
 
 const partnerLogos = [
-  { src: "/images/oa-logo.png", alt: "OrthoAlliance — Sports Medicine Partner" },
-  { src: "/images/sponsors/gj-pepsi-primary.svg", alt: "G&J Pepsi — Official Beverage Partner" },
-  { src: "/images/trackman-hero.png", alt: "Trackman Golf" },
-  { src: "/images/playsight-hero.png", alt: "PlaySight SmartCourts" },
+  { src: publicAsset("/images/oa-logo.png"), alt: "OrthoAlliance — Sports Medicine Partner" },
+  { src: publicAsset("/images/sponsors/gj-pepsi-primary.svg"), alt: "G&J Pepsi — Official Beverage Partner" },
+  { src: publicAsset("/images/trackman-hero.png"), alt: "Trackman Golf" },
+  { src: publicAsset("/images/playsight-hero.png"), alt: "PlaySight SmartCourts" },
 ];
 
 const waysToPlay = [
@@ -134,7 +135,7 @@ const Index = () => {
             transition={{ duration: 0.8 }}
           >
             <h1 className="sr-only">Match Point Pickleball Club in Columbus, Ohio</h1>
-            <img src="/images/match-point-logo-white.png" alt="Match Point" width={896} height={448} fetchPriority="high" decoding="async" className="h-32 md:h-48 lg:h-56 w-auto mx-auto mb-6" />
+            <img src={publicAsset("/images/match-point-logo-white.png")} alt="Match Point" width={896} height={448} fetchPriority="high" decoding="async" className="h-32 md:h-48 lg:h-56 w-auto mx-auto mb-6" />
             <p className="text-white/90 text-lg md:text-xl max-w-xl mx-auto mb-8">
               Central Ohio's premier indoor pickleball destination.<br />38 championship-size courts with CushionX surface. World-class amenities.
             </p>
@@ -311,7 +312,7 @@ const Index = () => {
             transition={{ duration: 0.6 }}
           >
             <img
-              src="/images/match-point-logo.png"
+              src={publicAsset("/images/match-point-logo.png")}
               alt="Match Point Logo"
               className="h-20 md:h-28 mx-auto mb-6"
             />
@@ -335,7 +336,7 @@ const Index = () => {
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
           <img loading="lazy" decoding="async"
-            src="/images/facility-photo.jpg"
+            src={publicAsset("/images/facility-photo.jpg")}
             alt="Match Point facility"
             className="w-full h-full object-cover"
           />
@@ -383,7 +384,7 @@ const Index = () => {
             </Link>
           </div>
           <img loading="lazy" decoding="async"
-            src="/images/oa-logo.png"
+            src={publicAsset("/images/oa-logo.png")}
             alt="OrthoAlliance Logo"
             className="h-40 md:h-56 object-contain"
           />
@@ -405,7 +406,7 @@ const Index = () => {
               transition={{ duration: 0.6 }}
             >
               <img loading="lazy" decoding="async"
-                src="/images/community-photo.jpg"
+                src={publicAsset("/images/community-photo.jpg")}
                 alt="Match Point community"
                 className="w-full rounded-lg object-cover aspect-[4/3]"
               />

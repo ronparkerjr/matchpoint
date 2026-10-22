@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/Layout";
@@ -61,7 +62,7 @@ const Badminton = () => {
       <PageHero
         title="Badminton"
         subtitle="Indoor, climate-controlled badminton courts in Columbus, Ohio — open play, hourly rentals, and a dedicated membership."
-        image="/images/badminton-hero.jpg"
+        image={publicAsset("/images/badminton-hero.jpg")}
       />
 
       <section className="py-20 bg-background">

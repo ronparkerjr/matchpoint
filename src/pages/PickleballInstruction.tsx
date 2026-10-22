@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { useEffect } from "react";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
@@ -11,23 +12,23 @@ type Instructor = {
 
 const headPro: Instructor = {
   name: "Rachel McCreery",
-  video: "/videos/instructors/rachel-mccreery.mp4",
+  video: publicAsset("/videos/instructors/rachel-mccreery.mp4"),
 };
 
 const instructors: Instructor[] = [
-  { name: "Jen Foley", video: "/videos/instructors/jen-foley.mp4" },
-  { name: "Betty Dorsey", video: "/videos/instructors/betty-dorsey.mp4" },
-  { name: "Calder Lee", video: "/videos/instructors/calder-lee.mp4" },
-  { name: "Colleen D'Angelo", video: "/videos/instructors/colleen-dangelo.mp4" },
-  { name: "David Hartman", video: "/videos/instructors/david-hartman.mp4" },
-  { name: "David Hayman", video: "/videos/instructors/david-hayman.mp4" },
-  { name: "Evan DuBro", video: "/videos/instructors/evan-dubro.mp4" },
-  { name: "Gennar Feucht", video: "/videos/instructors/gennar-feucht.mp4" },
-  { name: "Marilee", video: "/videos/instructors/marilee.mp4" },
-  { name: "Nick Tidwell", video: "/videos/instructors/nick-tidwell.mp4" },
-  { name: "Robin Dobler", video: "/videos/instructors/robin-dobler.mp4" },
-  { name: "Simone Johnson", video: "/videos/instructors/simone-johnson.mp4" },
-  { name: "Susan Bernard", video: "/videos/instructors/susan-bernard.mp4" },
+  { name: "Jen Foley", video: publicAsset("/videos/instructors/jen-foley.mp4") },
+  { name: "Betty Dorsey", video: publicAsset("/videos/instructors/betty-dorsey.mp4") },
+  { name: "Calder Lee", video: publicAsset("/videos/instructors/calder-lee.mp4") },
+  { name: "Colleen D'Angelo", video: publicAsset("/videos/instructors/colleen-dangelo.mp4") },
+  { name: "David Hartman", video: publicAsset("/videos/instructors/david-hartman.mp4") },
+  { name: "David Hayman", video: publicAsset("/videos/instructors/david-hayman.mp4") },
+  { name: "Evan DuBro", video: publicAsset("/videos/instructors/evan-dubro.mp4") },
+  { name: "Gennar Feucht", video: publicAsset("/videos/instructors/gennar-feucht.mp4") },
+  { name: "Marilee", video: publicAsset("/videos/instructors/marilee.mp4") },
+  { name: "Nick Tidwell", video: publicAsset("/videos/instructors/nick-tidwell.mp4") },
+  { name: "Robin Dobler", video: publicAsset("/videos/instructors/robin-dobler.mp4") },
+  { name: "Simone Johnson", video: publicAsset("/videos/instructors/simone-johnson.mp4") },
+  { name: "Susan Bernard", video: publicAsset("/videos/instructors/susan-bernard.mp4") },
 ];
 
 const PickleballInstruction = () => {
@@ -49,7 +50,7 @@ const PickleballInstruction = () => {
       <PageHero
         title="Pickleball Instruction"
         subtitle="Meet our certified instructors at Match Point — ready to help you elevate every part of your game."
-        image="/images/pickleball-hero.png"
+        image={publicAsset("/images/pickleball-hero.png")}
       />
 
       <section className="py-20 bg-background border-b border-border">

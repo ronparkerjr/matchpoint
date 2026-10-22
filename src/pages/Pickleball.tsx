@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/Layout";
@@ -74,7 +75,7 @@ const Pickleball = () => {
       <PageHero
         title="Pickleball"
         subtitle="Central Ohio's premier indoor pickleball destination — 38 championship-size courts with CushionX surface, open Mon–Fri 7 AM to 11 PM and Sat–Sun 7 AM to 10 PM."
-        image="/images/pickleball-hero.png"
+        image={publicAsset("/images/pickleball-hero.png")}
       />
 
       <section className="py-20 bg-background">

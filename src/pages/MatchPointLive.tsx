@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import { Card } from "@/components/ui/card";
@@ -18,34 +19,34 @@ type Stream = {
 
 
 const courtThumbnails = [
-  "/images/pickleball-hero.png",
-  "/images/player-showcase-hero.png",
-  "/images/facility-courts.png",
-  "/images/facility-aerial.jpg",
-  "/images/facility-photo.jpg",
-  "/images/courts-rendering.jpg",
-  "/images/community-photo.jpg",
-  "/images/leagues-photo.png",
-  "/images/leagues-hero.png",
-  "/images/ladies-tuesday-league.png",
-  "/images/our-facility-hero.png",
-  "/images/zane-navratil-clinic.png",
-  "/images/photos/photo-1.jpg",
-  "/images/photos/photo-2.jpg",
-  "/images/photos/photo-3.jpg",
-  "/images/photos/photo-4.jpg",
-  "/images/photos/photo-5.jpg",
-  "/images/photos/photo-6.jpg",
-  "/images/photos/photo-7.jpg",
-  "/images/photos/photo-8.jpg",
+  publicAsset("/images/pickleball-hero.png"),
+  publicAsset("/images/player-showcase-hero.png"),
+  publicAsset("/images/facility-courts.png"),
+  publicAsset("/images/facility-aerial.jpg"),
+  publicAsset("/images/facility-photo.jpg"),
+  publicAsset("/images/courts-rendering.jpg"),
+  publicAsset("/images/community-photo.jpg"),
+  publicAsset("/images/leagues-photo.png"),
+  publicAsset("/images/leagues-hero.png"),
+  publicAsset("/images/ladies-tuesday-league.png"),
+  publicAsset("/images/our-facility-hero.png"),
+  publicAsset("/images/zane-navratil-clinic.png"),
+  publicAsset("/images/photos/photo-1.jpg"),
+  publicAsset("/images/photos/photo-2.jpg"),
+  publicAsset("/images/photos/photo-3.jpg"),
+  publicAsset("/images/photos/photo-4.jpg"),
+  publicAsset("/images/photos/photo-5.jpg"),
+  publicAsset("/images/photos/photo-6.jpg"),
+  publicAsset("/images/photos/photo-7.jpg"),
+  publicAsset("/images/photos/photo-8.jpg"),
 ];
 
 const golfThumbnails = [
-  "/images/golf-sim-1.jpg",
-  "/images/golf-sim-2.jpg",
-  "/images/golf-sim-3.jpg",
-  "/images/golf-sim-4.jpg",
-  "/images/golf-sim-5.jpg",
+  publicAsset("/images/golf-sim-1.jpg"),
+  publicAsset("/images/golf-sim-2.jpg"),
+  publicAsset("/images/golf-sim-3.jpg"),
+  publicAsset("/images/golf-sim-4.jpg"),
+  publicAsset("/images/golf-sim-5.jpg"),
 ];
 
 // Stream URLs to be provided. Add `streamUrl` to any item below to enable LIVE playback.
@@ -101,7 +102,7 @@ const courtNameOverrides: Record<number, string> = {
 const courtThumbnailOverrides: Record<number, { src: string; contain?: boolean; bgClass?: string }> = {
   7: { src: fronterasLogoAsset.url, contain: true, bgClass: "bg-white" },
   37: { src: cellaxsLogoAsset.url, contain: true, bgClass: "bg-white" },
-  38: { src: "/images/sponsors/gj-pepsi-primary.svg", contain: true, bgClass: "bg-white" },
+  38: { src: publicAsset("/images/sponsors/gj-pepsi-primary.svg"), contain: true, bgClass: "bg-white" },
 };
 
 const featuredCourtNumbers = [37, 38];
@@ -113,7 +114,7 @@ const courts: Stream[] = Array.from({ length: 38 }, (_, i) => {
     id: `court-${i + 1}`,
     name: courtNameOverrides[i + 1] ?? `Court ${i + 1}`,
     type: "court",
-    thumbnail: override?.src ?? (i === 0 ? "/images/player-showcase-hero.png" : courtThumbnails[i % courtThumbnails.length]),
+    thumbnail: override?.src ?? (i === 0 ? publicAsset("/images/player-showcase-hero.png") : courtThumbnails[i % courtThumbnails.length]),
     thumbnailContain: override?.contain,
     thumbnailBgClass: override?.bgClass,
     ...(courtStreamUrls[i] ? { streamUrl: courtStreamUrls[i] } : {}),

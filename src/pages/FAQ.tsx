@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import Layout from "@/components/Layout";
@@ -104,7 +105,7 @@ const FAQ = () => {
       <PageHero
         title="Frequently Asked Questions"
         subtitle="Everything you need to know about Match Point Pickleball Club"
-        image="/images/faq-hero.jpg"
+        image={publicAsset("/images/faq-hero.jpg")}
       />
 
       <section className="py-24 bg-background">

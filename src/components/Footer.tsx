@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { Link } from "react-router-dom";
 import { NEARBY_CITIES } from "@/data/nearbyCities";
 
@@ -8,7 +9,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div>
-            <img src="/images/match-point-logo.png" alt="Match Point" className="h-10 mb-4" />
+            <img src={publicAsset("/images/match-point-logo.png")} alt="Match Point" className="h-10 mb-4" />
             <p className="text-muted-foreground text-sm leading-relaxed">
               Central Ohio's premier destination for pickleball enthusiasts. 38 indoor championship-size courts with CushionX surface, world-class amenities, and a vibrant community.
             </p>

@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import { CalendarDays, Check, Clock, MapPin, Phone, Trophy, Users } from "lucide-react";
@@ -151,7 +152,7 @@ const LeeWhitwellClinics = () => {
       <PageHero
         title="Lee Whitwell Clinics"
         subtitle="Train with the #1 world-ranked senior pro — live at Match Point Pickleball Club in Columbus, Ohio."
-        image="/images/pickleball-hero.png"
+        image={publicAsset("/images/pickleball-hero.png")}
       />
 
       <section className="py-16 md:py-20 bg-background">

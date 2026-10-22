@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
@@ -158,7 +159,7 @@ const Leagues = () => {
       <PageHero
         title="Leagues"
         subtitle="Consistent competition, great social atmosphere, and a structured way to improve your game"
-        image="/images/leagues-hero.png"
+        image={publicAsset("/images/leagues-hero.png")}
       />
 
       {/* Current Leagues & Registration */}

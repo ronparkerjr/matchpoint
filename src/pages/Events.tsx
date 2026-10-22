@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
@@ -97,7 +98,7 @@ const Events = () => {
       <PageHero
         title="Private Events"
         subtitle="Host your next unforgettable event at Central Ohio's premier sports entertainment venue"
-        image="/images/events-hero.jpg"
+        image={publicAsset("/images/events-hero.jpg")}
       />
 
       {/* Scrolling Marquee */}
@@ -165,7 +166,7 @@ const Events = () => {
               className="rounded-lg overflow-hidden border border-border-subtle"
             >
               <img loading="lazy" decoding="async"
-                src="/images/events-party.jpg"
+                src={publicAsset("/images/events-party.jpg")}
                 alt="Kids birthday party event at Match Point"
                 className="w-full h-80 md:h-96 object-cover"
               />
@@ -233,7 +234,7 @@ const Events = () => {
               <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
                 <div className="md:col-span-2">
                   <img loading="lazy" decoding="async"
-                    src="/images/events-fundraiser-check.jpg"
+                    src={publicAsset("/images/events-fundraiser-check.jpg")}
                     alt="Me-chelle Burkhalter holding donation check from Match Point fundraiser benefiting Directions for Youth and Families"
                     className="w-full rounded-xl object-cover aspect-[4/5] border border-primary/20 pointer-events-none select-none"
                     draggable={false}
@@ -332,7 +333,7 @@ const Events = () => {
                 Featured Event · OhioHealth
               </div>
               <img loading="lazy" decoding="async"
-                src="/images/events-ohiohealth.jpg"
+                src={publicAsset("/images/events-ohiohealth.jpg")}
                 alt="OhioHealth team event group photo at Match Point Pickleball Club"
                 className="w-full rounded-xl object-cover max-h-[600px] border border-primary/20 pointer-events-none select-none"
                 draggable={false}
@@ -345,15 +346,15 @@ const Events = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
            {[
-              { src: "/images/events-birthday1.jpg", alt: "Birthday party setup at Match Point" },
-              { src: "/images/events-birthday2.jpg", alt: "Kids birthday party event at Match Point" },
-              { src: "/images/events-birthday3.jpg", alt: "Themed birthday party at Match Point" },
-              { src: "/images/events-past1.jpg", alt: "Large group event at Match Point" },
-              { src: "/images/events-past2.jpg", alt: "Catered food spread at Match Point event" },
-              { src: "/images/events-past3.jpg", alt: "Staff members on the pickleball courts" },
-              { src: "/images/events-past4.jpg", alt: "Shamrock tournament at Match Point" },
-              { src: "/images/events-past5.jpg", alt: "Group pickleball event at Match Point" },
-              { src: "/images/events-past6.jpg", alt: "Two players with paddles at Match Point" },
+              { src: publicAsset("/images/events-birthday1.jpg"), alt: "Birthday party setup at Match Point" },
+              { src: publicAsset("/images/events-birthday2.jpg"), alt: "Kids birthday party event at Match Point" },
+              { src: publicAsset("/images/events-birthday3.jpg"), alt: "Themed birthday party at Match Point" },
+              { src: publicAsset("/images/events-past1.jpg"), alt: "Large group event at Match Point" },
+              { src: publicAsset("/images/events-past2.jpg"), alt: "Catered food spread at Match Point event" },
+              { src: publicAsset("/images/events-past3.jpg"), alt: "Staff members on the pickleball courts" },
+              { src: publicAsset("/images/events-past4.jpg"), alt: "Shamrock tournament at Match Point" },
+              { src: publicAsset("/images/events-past5.jpg"), alt: "Group pickleball event at Match Point" },
+              { src: publicAsset("/images/events-past6.jpg"), alt: "Two players with paddles at Match Point" },
             ].map((photo, i) => (
               <motion.div
                 key={i}
@@ -481,7 +482,7 @@ const Events = () => {
             <div className="text-center space-y-4">
               <div className="mb-6">
                 <img loading="lazy" decoding="async"
-                  src="/images/jen-foley.png"
+                  src={publicAsset("/images/jen-foley.png")}
                   alt="Jen Foley - Director of Corporate Relations"
                   className="w-56 md:w-64 mx-auto rounded-lg object-cover"
                 />

@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { motion } from "framer-motion";
 import { Video, BarChart2, Share2, Repeat2, Monitor, Tag, Play, Zap } from "lucide-react";
 import Layout from "@/components/Layout";
@@ -52,7 +53,7 @@ const Playsight = () => {
       <PageHero
         title="PlaySight"
         subtitle="AI SmartCourt technology on all 38 championship-size CushionX-surfaced courts at Match Point Columbus."
-        image="/images/playsight-hero.png"
+        image={publicAsset("/images/playsight-hero.png")}
       />
 
       {/* Intro */}

@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Zap, Users, Trophy, Clock } from "lucide-react";
@@ -37,7 +38,7 @@ const TableTennis = () => {
       <PageHero
         title="Table Tennis"
         subtitle="Fast, fun, and competitive — table tennis for all skill levels"
-        image="/images/table-tennis-hero.png"
+        image={publicAsset("/images/table-tennis-hero.png")}
       />
 
       {/* Intro */}
@@ -146,7 +147,7 @@ const TableTennis = () => {
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
           <img loading="lazy" decoding="async"
-            src="/images/facility-aerial.jpg"
+            src={publicAsset("/images/facility-aerial.jpg")}
             alt="Match Point facility"
             className="w-full h-full object-cover"
           />
