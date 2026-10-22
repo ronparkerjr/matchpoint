@@ -1,5 +1,10 @@
 # Static website backend removal
 
+This records the original removal. A later change configures the contact and
+nomination forms for FormSubmit; see [current form setup](FORMS.md) for activation
+and delivery verification. The original unavailable-form behavior below is
+historical.
+
 ## Repository audit
 
 Based on main at `55ba1af` (October 20, 2026). The initial Lovable upload was

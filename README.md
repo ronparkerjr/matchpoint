@@ -1,8 +1,9 @@
 # Welcome to your Lovable project
 
 This export now runs as a static website without Supabase. Contact and nomination
-forms retain their layout but cannot submit. See [backend removal notes](BACKEND_REMOVAL.md)
-for removed features, planned FormSubmit work, and deployment limitations.
+forms use FormSubmit to deliver to `rjparkerjr@gmail.com`; activation and actual
+inbox delivery must be verified after deployment. See [form setup](FORMS.md) and
+the historical [backend removal notes](BACKEND_REMOVAL.md).
 Use `npm ci`, `npm run build`, and `npm test`; Bun is no longer required.
 
 ## Project info

@@ -1,3 +1,5 @@
+import FormSubmitFields from "@/components/FormSubmitFields";
+import { FORM_SUBMIT_ACTION } from "@/lib/formSubmit";
 import { useState } from "react";
 import { z } from "zod";
 
@@ -34,16 +36,27 @@ const ContactForm = () => {
     }
   };
 
-  // Submission stays blocked for both button clicks and implicit/programmatic submits.
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const result = contactSchema.safeParse(formData);
+    if (!result.success) {
+      e.preventDefault();
+      const fieldErrors: Partial<Record<keyof ContactFormData, string>> = {};
+      result.error.errors.forEach((error) => {
+        const field = error.path[0] as keyof ContactFormData;
+        fieldErrors[field] ??= error.message;
+      });
+      setErrors(fieldErrors);
+      const firstField = e.currentTarget.elements.namedItem(result.error.errors[0].path[0] as string);
+      if (firstField instanceof HTMLElement) firstField.focus();
+    }
+    // Valid input uses native POST. FormSubmit handles verification and its response;
+    // this page must never claim delivery before the provider accepts the submission.
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <p role="status" className="text-sm text-muted-foreground">
-        Contact submissions are temporarily unavailable. This form cannot send or save your information.
-      </p>
+    <form action={FORM_SUBMIT_ACTION} method="POST" onSubmit={handleSubmit} noValidate className="space-y-5">
+      <FormSubmitFields subject="Match Point website contact" formType="Contact" />
+      <input type="hidden" name="newsletterConsent" value={formData.newsletter ? "Yes" : "No"} />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="firstName" className="block text-sm font-medium text-foreground mb-1.5">
@@ -121,6 +134,7 @@ const ContactForm = () => {
         <input
           type="checkbox"
           name="newsletter"
+          value="Yes"
           checked={formData.newsletter}
           onChange={handleChange}
           className="w-4 h-4 rounded border-border text-primary focus:ring-primary"
@@ -128,9 +142,12 @@ const ContactForm = () => {
         <span className="text-sm text-muted-foreground">Sign up for news and updates</span>
       </label>
 
+      <p className="text-sm text-muted-foreground">
+        Submissions are processed by FormSubmit. Complete any verification on the next page.
+      </p>
+
       <button
         type="submit"
-        disabled
         className="w-full bg-primary text-primary-foreground py-3 rounded-md font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
       >
         Submit
