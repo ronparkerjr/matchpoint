@@ -1,3 +1,5 @@
+import FormSubmitFields from "@/components/FormSubmitFields";
+import { FORM_SUBMIT_ACTION } from "@/lib/formSubmit";
 import { useState } from "react";
 import { z } from "zod";
 
@@ -18,7 +20,7 @@ type Props = {
   subject: string;
 };
 
-const NominationForm = ({ nomineeLabel }: Props) => {
+const NominationForm = ({ nomineeLabel, subject }: Props) => {
   const [formData, setFormData] = useState<NominationFormData>({
     firstName: "",
     lastName: "",
@@ -38,16 +40,26 @@ const NominationForm = ({ nomineeLabel }: Props) => {
     }
   };
 
-  // Submission stays blocked for both button clicks and implicit/programmatic submits.
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    const result = nominationSchema.safeParse(formData);
+    if (!result.success) {
+      e.preventDefault();
+      const fieldErrors: Partial<Record<keyof NominationFormData, string>> = {};
+      result.error.errors.forEach((error) => {
+        const field = error.path[0] as keyof NominationFormData;
+        fieldErrors[field] ??= error.message;
+      });
+      setErrors(fieldErrors);
+      const firstField = e.currentTarget.elements.namedItem(result.error.errors[0].path[0] as string);
+      if (firstField instanceof HTMLElement) firstField.focus();
+    }
+    // Valid input uses native POST. FormSubmit handles verification and its response;
+    // this page must never claim delivery before the provider accepts the submission.
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-5">
-      <p role="status" className="text-sm text-muted-foreground">
-        Nomination submissions are temporarily unavailable. This form cannot send or save your information.
-      </p>
+    <form action={FORM_SUBMIT_ACTION} method="POST" onSubmit={handleSubmit} noValidate className="space-y-5">
+      <FormSubmitFields subject={subject} formType={`${nomineeLabel} nomination`} />
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="firstName" className="block text-sm font-medium text-foreground mb-1.5">
@@ -56,13 +68,15 @@ const NominationForm = ({ nomineeLabel }: Props) => {
           <input
             id="firstName"
             name="firstName"
+          aria-invalid={Boolean(errors.firstName)}
+          aria-describedby={errors.firstName ? "firstName-error" : undefined}
             type="text"
             value={formData.firstName}
             onChange={handleChange}
             className="w-full bg-secondary border border-border rounded-md px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
             placeholder="John"
           />
-          {errors.firstName && <p className="text-primary text-xs mt-1">{errors.firstName}</p>}
+          {errors.firstName && <p id="firstName-error" role="alert" className="text-primary text-xs mt-1">{errors.firstName}</p>}
         </div>
         <div>
           <label htmlFor="lastName" className="block text-sm font-medium text-foreground mb-1.5">
@@ -71,13 +85,15 @@ const NominationForm = ({ nomineeLabel }: Props) => {
           <input
             id="lastName"
             name="lastName"
+          aria-invalid={Boolean(errors.lastName)}
+          aria-describedby={errors.lastName ? "lastName-error" : undefined}
             type="text"
             value={formData.lastName}
             onChange={handleChange}
             className="w-full bg-secondary border border-border rounded-md px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
             placeholder="Doe"
           />
-          {errors.lastName && <p className="text-primary text-xs mt-1">{errors.lastName}</p>}
+          {errors.lastName && <p id="lastName-error" role="alert" className="text-primary text-xs mt-1">{errors.lastName}</p>}
         </div>
       </div>
 
@@ -88,13 +104,15 @@ const NominationForm = ({ nomineeLabel }: Props) => {
         <input
           id="email"
           name="email"
+          aria-invalid={Boolean(errors.email)}
+          aria-describedby={errors.email ? "email-error" : undefined}
           type="email"
           value={formData.email}
           onChange={handleChange}
           className="w-full bg-secondary border border-border rounded-md px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
           placeholder="john@example.com"
         />
-        {errors.email && <p className="text-primary text-xs mt-1">{errors.email}</p>}
+        {errors.email && <p id="email-error" role="alert" className="text-primary text-xs mt-1">{errors.email}</p>}
       </div>
 
       <div>
@@ -104,13 +122,15 @@ const NominationForm = ({ nomineeLabel }: Props) => {
         <input
           id="nomineeName"
           name="nomineeName"
+          aria-invalid={Boolean(errors.nomineeName)}
+          aria-describedby={errors.nomineeName ? "nomineeName-error" : undefined}
           type="text"
           value={formData.nomineeName}
           onChange={handleChange}
           className="w-full bg-secondary border border-border rounded-md px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors"
           placeholder={`${nomineeLabel} full name`}
         />
-        {errors.nomineeName && <p className="text-primary text-xs mt-1">{errors.nomineeName}</p>}
+        {errors.nomineeName && <p id="nomineeName-error" role="alert" className="text-primary text-xs mt-1">{errors.nomineeName}</p>}
       </div>
 
       <div>
@@ -120,18 +140,23 @@ const NominationForm = ({ nomineeLabel }: Props) => {
         <textarea
           id="message"
           name="message"
+          aria-invalid={Boolean(errors.message)}
+          aria-describedby={errors.message ? "message-error" : undefined}
           rows={5}
           value={formData.message}
           onChange={handleChange}
           className="w-full bg-secondary border border-border rounded-md px-4 py-2.5 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-colors resize-none"
           placeholder="Tell us a story, a stat, or a moment that stood out..."
         />
-        {errors.message && <p className="text-primary text-xs mt-1">{errors.message}</p>}
+        {errors.message && <p id="message-error" role="alert" className="text-primary text-xs mt-1">{errors.message}</p>}
       </div>
+
+      <p className="text-sm text-muted-foreground">
+        Submissions are processed by FormSubmit. Complete any verification on the next page.
+      </p>
 
       <button
         type="submit"
-        disabled
         className="w-full bg-primary text-primary-foreground py-3 rounded-md font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
       >
         Submit Nomination

@@ -23,7 +23,7 @@ it("renders a direct Pages contact URL and keeps navigation within the project",
   window.history.replaceState({}, "", "/matchpoint/contact-us");
   render(<HelmetProvider><App /></HelmetProvider>);
   await waitFor(() => expect(screen.getByRole("heading", { name: "Contact Us", level: 1 })).toBeVisible());
-  expect(screen.getByRole("status")).toHaveTextContent("temporarily unavailable");
+  expect(screen.getByRole("button", { name: "Submit" })).toBeEnabled();
   const logo = screen.getAllByAltText("Match Point")[0];
   expect(logo).toHaveAttribute("src", "/matchpoint/images/match-point-logo.png");
   const about = screen.getAllByRole("link", { name: "About" })[0];
