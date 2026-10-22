@@ -52,9 +52,17 @@ def import_asset(item):
     record = {"path": item["path"], "source": item["url"], "sourceBytes": original.stat().st_size,
               "sourceSha256": digest(original), "kind": item["kind"]}
     if item["kind"] == "video":
+        source_probe = json.loads(subprocess.check_output([
+            "ffprobe", "-v", "error", "-show_streams", "-show_format", "-of", "json", str(original),
+        ]))
+        # Some phone exports include an extra audio-like metadata track with no
+        # decoder. Preserve the first real audio stream instead of mapping all tracks.
+        audio = next((s for s in source_probe["streams"] if s.get("codec_type") == "audio"
+                      and s.get("codec_name") not in [None, "none", "unknown"]), None)
+        audio_map = ["-map", f"0:{audio['index']}"] if audio else []
         subprocess.run([
             "ffmpeg", "-hide_banner", "-loglevel", "error", "-y", "-i", str(original),
-            "-map", "0:v:0", "-map", "0:a?", "-vf",
+            "-map", "0:v:0", *audio_map, "-vf",
             "scale=w='min(1280,iw)':h='min(1280,ih)':force_original_aspect_ratio=decrease:force_divisible_by=2",
             "-r", "30", "-c:v", "libx264", "-preset", "medium", "-crf", "25",
             "-pix_fmt", "yuv420p", "-c:a", "aac", "-b:a", "128k", "-movflags", "+faststart",
@@ -65,6 +73,10 @@ def import_asset(item):
             "-of", "json", str(target),
         ]))
         record["probe"] = probe
+        source_duration = float(source_probe["format"]["duration"])
+        if abs(float(probe["format"]["duration"]) - source_duration) > 0.25:
+            raise ValueError(f"Video duration changed unexpectedly: {item['path']}")
+        record["sourceDuration"] = source_duration
     elif item["kind"] == "gallery":
         with Image.open(original) as im:
             im = ImageOps.exif_transpose(im).convert("RGB")
