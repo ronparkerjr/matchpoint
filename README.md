@@ -4,6 +4,8 @@ This export now runs as a static website without Supabase. Contact and nominatio
 forms use FormSubmit to deliver to `rjparkerjr@gmail.com`; activation and actual
 inbox delivery must be verified after deployment. See [form setup](FORMS.md) and
 the historical [backend removal notes](BACKEND_REMOVAL.md).
+See [media localization](MEDIA_LOCALIZATION.md) for locally hosted images,
+gallery photos, videos, PDFs and fonts; selected third-party embeds remain external.
 Use `npm ci`, `npm run build`, and `npm test`; Bun is no longer required.
 
 ## Project info

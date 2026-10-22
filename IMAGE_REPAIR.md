@@ -1,5 +1,9 @@
 # Image repair audit
 
+The later [media localization](MEDIA_LOCALIZATION.md) extends this repair to all
+club-owned videos, PDFs, gallery photos and fonts. The external-gallery and
+remaining-Lovable-video limitations below describe the earlier image-only stage.
+
 Audited all 56 public routes on the GitHub Pages site on October 22, 2026.
 The rendered pages referenced 228 distinct image URLs, including 159 externally
 hosted gallery photos. The gallery was scrolled and remaining lazy images opened
