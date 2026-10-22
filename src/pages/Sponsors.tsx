@@ -32,7 +32,7 @@ const premierSponsors: Sponsor[] = [
   },
   {
     name: "Cellaxs",
-    logo: "/__l5e/assets-v1/ef6a8d28-e315-4642-8c83-a39efddec5bc/cellaxs-logo-white.png",
+    logo: publicAsset("/images/cellaxs-logo-white.png"),
     blurb:
       "Proud sponsor of the Cellaxs Stadium Court at Match Point Pickleball Club. Cellaxs offers expert cell phone, tablet, and electronics repair, keeping our community connected on and off the court.",
     website: "https://cellaxs.com",

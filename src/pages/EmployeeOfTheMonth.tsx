@@ -5,7 +5,7 @@ import { Award, Calendar, Briefcase, Heart, Quote, Trophy } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import katieVideo from "@/assets/katie-ventre-employee-of-the-month.mp4.asset.json";
-import katieThumbnail from "@/assets/katie-ventre-employee-of-the-month-thumbnail.jpg.asset.json";
+import { publicAsset } from "@/lib/publicAsset";
 import bridgettVideo from "@/assets/bridgett-employee-of-the-month.mp4.asset.json";
 
 type Employee = {
@@ -33,7 +33,7 @@ const currentEmployee: Employee = {
   quote:
     "It's made my community bigger.",
   videoUrl: katieVideo.url,
-  photoUrl: katieThumbnail.url,
+  photoUrl: publicAsset("/images/katie-ventre-employee-of-the-month-thumbnail.jpg"),
 };
 
 const pastEmployees: { name: string; month: string; role: string; videoUrl?: string }[] = [

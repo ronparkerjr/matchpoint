@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "predev": "node scripts/generate-sitemap.mjs",
-    "prebuild": "node scripts/generate-sitemap.mjs",
+    "prebuild": "node scripts/check-images.mjs && node scripts/generate-sitemap.mjs",
     "dev": "vite",
     "build": "vite build",
     "build:dev": "vite build --mode development",
@@ -13,7 +13,8 @@
     "preview": "vite preview",
     "test": "vitest run",
     "test:watch": "vitest",
-    "postbuild": "node scripts/generate-pages.mjs"
+    "postbuild": "node scripts/generate-pages.mjs",
+    "test:images": "node scripts/check-images.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

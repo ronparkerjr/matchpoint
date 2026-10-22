@@ -4,8 +4,6 @@ import PageHero from "@/components/PageHero";
 import { Card } from "@/components/ui/card";
 import { Play, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
-import cellaxsLogoAsset from "@/assets/cellaxs-logo.png.asset.json";
-import fronterasLogoAsset from "@/assets/fronteras-logo.png.asset.json";
 
 type Stream = {
   id: string;
@@ -100,8 +98,8 @@ const courtNameOverrides: Record<number, string> = {
 };
 
 const courtThumbnailOverrides: Record<number, { src: string; contain?: boolean; bgClass?: string }> = {
-  7: { src: fronterasLogoAsset.url, contain: true, bgClass: "bg-white" },
-  37: { src: cellaxsLogoAsset.url, contain: true, bgClass: "bg-white" },
+  7: { src: publicAsset("/images/fronteras-logo.png"), contain: true, bgClass: "bg-white" },
+  37: { src: publicAsset("/images/cellaxs-logo-red.png"), contain: true, bgClass: "bg-white" },
   38: { src: publicAsset("/images/sponsors/gj-pepsi-primary.svg"), contain: true, bgClass: "bg-white" },
 };
 
