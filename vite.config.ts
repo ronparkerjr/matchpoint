@@ -4,7 +4,9 @@ import path from "path";
 import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
-export default defineConfig(({ mode }) => ({base: "/matchpoint/",
+export default defineConfig(({ mode }) => ({
+  // Hostinger uses /; GitHub Pages keeps its repository subpath by default.
+  base: process.env.VITE_BASE_PATH || "/matchpoint/",
   server: {
     host: "::",
     port: 8080,
