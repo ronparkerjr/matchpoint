@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
 import { NEARBY_CITIES } from "@/data/nearbyCities";
+import { publicAsset } from "@/lib/publicAsset";
 
 const SITE = "https://www.matchpointpickleballclub.com";
 const DEFAULT_TITLE = "Indoor Pickleball Courts Columbus OH | Match Point Club";
@@ -229,6 +230,7 @@ export default function RouteSEO() {
   }
 
   const url = `${SITE}${pathname}`;
+  const imageUrl = new URL(publicAsset("/images/facility-aerial.jpg"), window.location.origin).href;
   return (
     <Helmet>
       <title>{entry.title}</title>
@@ -239,12 +241,12 @@ export default function RouteSEO() {
       <meta property="og:url" content={url} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Match Point Pickleball Club" />
-      <meta property="og:image" content={`${SITE}/images/facility-aerial.jpg`} />
+      <meta property="og:image" content={imageUrl} />
       <meta property="og:image:alt" content="Match Point Pickleball Club facility in Columbus, Ohio" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={entry.title} />
       <meta name="twitter:description" content={entry.description} />
-      <meta name="twitter:image" content={`${SITE}/images/facility-aerial.jpg`} />
+      <meta name="twitter:image" content={imageUrl} />
     </Helmet>
   );
 }

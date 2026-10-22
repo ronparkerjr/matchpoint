@@ -1,10 +1,10 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { Fragment } from "react";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
 import { Check, Download } from "lucide-react";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
-import membershipPdf from "@/assets/matchpoint-membership-2026.pdf.asset.json";
 
 const COURTRESERVE_URL = "https://app.courtreserve.com/Online/Memberships/Public/17037";
 
@@ -342,7 +342,7 @@ const Memberships = () => {
               Pay for 12 months and get your 13th month free.
             </p>
             <a
-              href={membershipPdf.url}
+              href={publicAsset("/downloads/MatchPoint-Membership-Options-2026.pdf")}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-6 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
@@ -555,7 +555,7 @@ const Memberships = () => {
               View All Plans on CourtReserve
             </a>
             <a
-              href={membershipPdf.url}
+              href={publicAsset("/downloads/MatchPoint-Membership-Options-2026.pdf")}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 border-2 border-primary text-primary px-8 py-3 rounded-lg font-semibold hover:bg-primary hover:text-primary-foreground transition-colors"

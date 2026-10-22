@@ -1,5 +1,5 @@
 import { Trophy, CalendarDays, DollarSign, Clock, ArrowRight } from "lucide-react";
-import flyer from "@/assets/anniversary-championship-flyer.jpg.asset.json";
+import { publicAsset } from "@/lib/publicAsset";
 
 export const ANNIVERSARY_REGISTER_URL =
   "https://pickleballtournaments.com/tournaments/match-point-championships-1-year-anniversary-tournament";
@@ -35,7 +35,7 @@ const AnniversaryTournamentPromo = ({ variant = "full", className = "" }: Props)
               className="block rounded-xl overflow-hidden border border-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
             >
               <img
-                src={flyer.url}
+                src={publicAsset("/images/anniversary-championship-flyer.jpg")}
                 alt="Match Point Championship One Year Anniversary Tournament — Nov 6, 7 and 8, three Money Balls, $55 entry fee"
                 loading="lazy"
                 decoding="async"

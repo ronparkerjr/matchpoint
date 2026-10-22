@@ -1,9 +1,10 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { useState, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { ChevronLeft, ChevronRight, X } from "lucide-react";
 import Layout from "@/components/Layout";
 
-const BASE_URL = "https://oceanbay-junkremoval.com/mp-pics/";
+const BASE_URL = publicAsset("/images/gallery/");
 
 const photos = [
   { src: "487413860_122104334234817466_5857429004640092547_n.jpg", alt: "Match Point event photo" },

@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
@@ -5,7 +6,6 @@ import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import { Trophy, Calendar, MapPin, Sparkles, Quote, Award, Megaphone } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import muraliVideo from "@/assets/murali-member-of-the-month.mp4.asset.json";
 
 type Member = {
   name: string;
@@ -32,7 +32,7 @@ const currentMember: Member = {
   favoriteCourt: "—",
   bio: "Murali V. is our Member of the Month for July 2026. Known around the club for his explosive hero angle attack and his signature battle cry, 'MURALI!', he brings energy, passion, and a competitive spirit to every match he plays.",
   quote: "MURALI!",
-  videoUrl: muraliVideo.url,
+  videoUrl: publicAsset("/videos/features/murali-member-of-the-month.mp4"),
 };
 
 const pastMembers: { name: string; monthOf: string; highlight: string }[] = [
