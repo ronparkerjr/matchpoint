@@ -56,9 +56,6 @@ import IndoorPickleballCourtsColumbus from "./pages/IndoorPickleballCourtsColumb
 import BookPickleballCourtColumbus from "./pages/BookPickleballCourtColumbus";
 
 import NearbyCityLanding from "./pages/NearbyCityLanding";
-import Auth from "./pages/Auth";
-import Admin from "./pages/Admin";
-import ResetPassword from "./pages/ResetPassword";
 import { NEARBY_CITIES } from "./data/nearbyCities";
 import ScrollToTop from "./components/ScrollToTop";
 import RouteSEO from "./components/RouteSEO";
@@ -132,9 +129,6 @@ const App = () => (
           {NEARBY_CITIES.map((city) => (
             <Route key={city.path} path={city.path} element={<NearbyCityLanding city={city} />} />
           ))}
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/reset-password" element={<ResetPassword />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

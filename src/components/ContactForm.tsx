@@ -1,9 +1,5 @@
 import { useState } from "react";
 import { z } from "zod";
-import { useToast } from "@/components/ui/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-import { getRecaptchaToken } from "@/lib/recaptcha";
-import { trackFormSubmit } from "@/lib/analytics";
 
 const contactSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(100),
@@ -16,7 +12,6 @@ const contactSchema = z.object({
 type ContactFormData = z.infer<typeof contactSchema>;
 
 const ContactForm = () => {
-  const { toast } = useToast();
   const [formData, setFormData] = useState<ContactFormData>({
     firstName: "",
     lastName: "",
@@ -25,8 +20,6 @@ const ContactForm = () => {
     newsletter: false,
   });
   const [errors, setErrors] = useState<Partial<Record<keyof ContactFormData, string>>>({});
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -41,75 +34,16 @@ const ContactForm = () => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Submission stays blocked for both button clicks and implicit/programmatic submits.
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const result = contactSchema.safeParse(formData);
-
-    if (!result.success) {
-      const fieldErrors: Partial<Record<keyof ContactFormData, string>> = {};
-      result.error.errors.forEach((err) => {
-        const field = err.path[0] as keyof ContactFormData;
-        fieldErrors[field] = err.message;
-      });
-      setErrors(fieldErrors);
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const recaptchaToken = await getRecaptchaToken("contact_submit");
-      const { error } = await supabase.functions.invoke("send-contact-email", {
-        body: { ...formData, recaptchaToken },
-      });
-
-      if (error) throw error;
-
-      setSubmitted(true);
-      trackFormSubmit(
-        /lesson|instruction/i.test(formData.message) ? "lesson_inquiry" : "contact",
-        { newsletter_opt_in: formData.newsletter }
-      );
-      toast({
-        title: "Message Sent!",
-        description: "Thank you for reaching out. We'll be in touch shortly.",
-      });
-    } catch (err) {
-      console.error("Failed to send message:", err);
-      toast({
-        title: "Something went wrong",
-        description: "We couldn't send your message. Please try again or email us directly.",
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
   };
-
-  if (submitted) {
-    return (
-      <div className="text-center py-12">
-        <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
-          <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <h3 className="font-display text-2xl text-bright mb-2">Thank You!</h3>
-        <p className="text-muted-foreground">We'll be in touch shortly. We can't wait to hear from you!</p>
-        <button type="button"
-          onClick={() => {
-            setSubmitted(false);
-            setFormData({ firstName: "", lastName: "", email: "", message: "", newsletter: false });
-          }}
-          className="text-primary text-sm font-semibold hover:underline mt-4"
-        >
-          Send another message
-        </button>
-      </div>
-    );
-  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      <p role="status" className="text-sm text-muted-foreground">
+        Contact submissions are temporarily unavailable. This form cannot send or save your information.
+      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="firstName" className="block text-sm font-medium text-foreground mb-1.5">
@@ -196,10 +130,10 @@ const ContactForm = () => {
 
       <button
         type="submit"
-        disabled={loading}
+        disabled
         className="w-full bg-primary text-primary-foreground py-3 rounded-md font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {loading ? "Sending..." : "Submit"}
+        Submit
       </button>
     </form>
   );

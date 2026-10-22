@@ -5,13 +5,8 @@ import { resolve } from "path";
 
 const BASE_URL = "https://www.matchpointpickleballclub.com";
 
-interface SitemapEntry {
-  path: string;
-  changefreq?: "always" | "hourly" | "daily" | "weekly" | "monthly" | "yearly" | "never";
-  priority?: string;
-}
 
-const entries: SitemapEntry[] = [
+const entries = [
   { path: "/", changefreq: "weekly", priority: "1.0" },
   { path: "/about", changefreq: "monthly", priority: "0.8" },
   { path: "/our-facility", changefreq: "monthly", priority: "0.8" },
@@ -59,7 +54,7 @@ const entries: SitemapEntry[] = [
   { path: "/sponsorship-deck", changefreq: "monthly", priority: "0.5" },
 ];
 
-function generateSitemap(entries: SitemapEntry[]) {
+function generateSitemap(entries) {
   const urls = entries.map((e) =>
     [
       `  <url>`,
