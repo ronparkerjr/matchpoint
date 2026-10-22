@@ -1,9 +1,5 @@
 import { useState } from "react";
 import { z } from "zod";
-import { useToast } from "@/components/ui/use-toast";
-import { supabase } from "@/integrations/supabase/client";
-import { getRecaptchaToken } from "@/lib/recaptcha";
-import { trackFormSubmit } from "@/lib/analytics";
 
 const nominationSchema = z.object({
   firstName: z.string().trim().min(1, "First name is required").max(100),
@@ -22,8 +18,7 @@ type Props = {
   subject: string;
 };
 
-const NominationForm = ({ nomineeLabel, subject }: Props) => {
-  const { toast } = useToast();
+const NominationForm = ({ nomineeLabel }: Props) => {
   const [formData, setFormData] = useState<NominationFormData>({
     firstName: "",
     lastName: "",
@@ -32,8 +27,6 @@ const NominationForm = ({ nomineeLabel, subject }: Props) => {
     message: "",
   });
   const [errors, setErrors] = useState<Partial<Record<keyof NominationFormData, string>>>({});
-  const [submitted, setSubmitted] = useState(false);
-  const [loading, setLoading] = useState(false);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -45,79 +38,16 @@ const NominationForm = ({ nomineeLabel, subject }: Props) => {
     }
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Submission stays blocked for both button clicks and implicit/programmatic submits.
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const result = nominationSchema.safeParse(formData);
-    if (!result.success) {
-      const fieldErrors: Partial<Record<keyof NominationFormData, string>> = {};
-      result.error.errors.forEach((err) => {
-        const field = err.path[0] as keyof NominationFormData;
-        fieldErrors[field] = err.message;
-      });
-      setErrors(fieldErrors);
-      return;
-    }
-
-    setLoading(true);
-    try {
-      const composedMessage = `${subject}\n\nNominee: ${formData.nomineeName}\n\nWhy they deserve recognition:\n${formData.message}`;
-      const recaptchaToken = await getRecaptchaToken("nomination_submit");
-      const { error } = await supabase.functions.invoke("send-contact-email", {
-        body: {
-          firstName: formData.firstName,
-          lastName: formData.lastName,
-          email: formData.email,
-          message: composedMessage,
-          subject,
-          newsletter: false,
-          recaptchaToken,
-        },
-      });
-      if (error) throw error;
-
-      setSubmitted(true);
-      trackFormSubmit("nomination");
-      toast({
-        title: "Nomination Sent!",
-        description: "Thanks for the shoutout — we've received your nomination.",
-      });
-    } catch (err) {
-      console.error("Failed to send nomination:", err);
-      toast({
-        title: "Something went wrong",
-        description: "We couldn't send your nomination. Please try again or email us directly.",
-        variant: "destructive",
-      });
-    } finally {
-      setLoading(false);
-    }
   };
-
-  if (submitted) {
-    return (
-      <div className="text-center py-12">
-        <div className="w-16 h-16 rounded-full bg-primary/20 flex items-center justify-center mx-auto mb-4">
-          <svg className="w-8 h-8 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
-        </div>
-        <h3 className="font-display text-2xl text-bright mb-2">Nomination Received!</h3>
-        <p className="text-muted-foreground">Thanks for taking the time — we read every nomination.</p>
-        <button type="button"
-          onClick={() => {
-            setSubmitted(false);
-            setFormData({ firstName: "", lastName: "", email: "", nomineeName: "", message: "" });
-          }}
-          className="text-primary text-sm font-semibold hover:underline mt-4"
-        >
-          Submit another nomination
-        </button>
-      </div>
-    );
-  }
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      <p role="status" className="text-sm text-muted-foreground">
+        Nomination submissions are temporarily unavailable. This form cannot send or save your information.
+      </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         <div>
           <label htmlFor="firstName" className="block text-sm font-medium text-foreground mb-1.5">
@@ -201,10 +131,10 @@ const NominationForm = ({ nomineeLabel, subject }: Props) => {
 
       <button
         type="submit"
-        disabled={loading}
+        disabled
         className="w-full bg-primary text-primary-foreground py-3 rounded-md font-semibold text-sm hover:opacity-90 transition-opacity disabled:opacity-60 disabled:cursor-not-allowed"
       >
-        {loading ? "Sending..." : "Submit Nomination"}
+        Submit Nomination
       </button>
     </form>
   );

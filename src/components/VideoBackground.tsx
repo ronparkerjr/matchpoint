@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { useRef, useEffect } from "react";
 import heroVideo from "@/assets/matchpoint-tv-sport-30sec.mp4.asset.json";
 
@@ -20,7 +21,7 @@ const VideoBackground = () => {
       muted
       loop
       playsInline
-      poster="/images/facility-aerial.jpg"
+      poster={publicAsset("/images/facility-aerial.jpg")}
     />
   );
 };

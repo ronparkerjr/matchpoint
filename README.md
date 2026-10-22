@@ -1,5 +1,10 @@
 # Welcome to your Lovable project
 
+This export now runs as a static website without Supabase. Contact and nomination
+forms retain their layout but cannot submit. See [backend removal notes](BACKEND_REMOVAL.md)
+for removed features, planned FormSubmit work, and deployment limitations.
+Use `npm ci`, `npm run build`, and `npm test`; Bun is no longer required.
+
 ## Project info
 
 **URL**: https://lovable.dev/projects/REPLACE_WITH_PROJECT_ID

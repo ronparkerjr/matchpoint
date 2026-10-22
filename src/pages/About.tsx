@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import Layout from "@/components/Layout";
@@ -9,7 +10,7 @@ const About = () => {
       <PageHero
         title="We Are Match Point"
         subtitle="Central Ohio's premier destination for pickleball and sports entertainment"
-        image="/images/facility-photo.jpg"
+        image={publicAsset("/images/facility-photo.jpg")}
       />
 
       <section className="py-24 bg-background">
@@ -44,7 +45,7 @@ const About = () => {
               transition={{ duration: 0.6, delay: 0.2 }}
             >
               <img loading="lazy" decoding="async"
-                src="/images/facility-courts.png"
+                src={publicAsset("/images/facility-courts.png")}
                 alt="Indoor pickleball courts at Match Point in Columbus"
                 className="w-full rounded-lg object-cover"
               />

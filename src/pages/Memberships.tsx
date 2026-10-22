@@ -528,7 +528,7 @@ const Memberships = () => {
             Golf memberships and simulator info are managed through our dedicated Trackman page. Click below for rates, availability, and booking details.
           </p>
           <a
-            href="/trackman-golf"
+            href={`${import.meta.env.BASE_URL}trackman-golf`}
             className="inline-flex items-center gap-2 bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:opacity-90 transition-opacity"
           >
             Visit Our Trackman Golf Page

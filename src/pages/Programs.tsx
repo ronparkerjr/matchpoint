@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { Users, Repeat, GraduationCap, Trophy, ArrowRight } from "lucide-react";
@@ -114,7 +115,7 @@ const Programs = () => {
       <PageHero
         title="Programs"
         subtitle="Four ways to play at Match Point — pick the one that fits, then tap it for the details."
-        image="/images/leagues-hero.png"
+        image={publicAsset("/images/leagues-hero.png")}
       />
 
       {/* Quick picker */}

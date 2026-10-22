@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { motion } from "framer-motion";
 import Layout from "@/components/Layout";
 
@@ -7,7 +8,7 @@ const OrthoAlliance = () => {
       {/* Header Banner */}
       <section className="relative min-h-[40vh] overflow-hidden">
         <img
-          src="/images/oa-header.png"
+          src={publicAsset("/images/oa-header.png")}
           alt="OrthoAlliance x Match Point"
           className="absolute inset-0 w-full h-full object-cover"
         />
@@ -54,7 +55,7 @@ const OrthoAlliance = () => {
               OrthoAlliance's Central Ohio partner practices provide world-class orthopedic care — conveniently located within 20 miles of Match Point.
             </p>
             <img loading="lazy" decoding="async"
-              src="/images/oa-locations-map.png"
+              src={publicAsset("/images/oa-locations-map.png")}
               alt="OrthoAlliance locations near Match Point"
               className="w-full rounded-lg mb-8"
             />
@@ -109,7 +110,7 @@ const OrthoAlliance = () => {
           <div className="mb-16">
             <h2 className="font-display text-2xl text-bright mb-6">Meet the Match Point Medical Team</h2>
             <img loading="lazy" decoding="async"
-              src="/images/oa-medical-team.png"
+              src={publicAsset("/images/oa-medical-team.png")}
               alt="Match Point Medical Team"
               className="w-full rounded-lg mb-8"
             />
@@ -139,7 +140,7 @@ const OrthoAlliance = () => {
 
           {/* Footer Banner */}
           <img loading="lazy" decoding="async"
-            src="/images/oa-footer-banner.png"
+            src={publicAsset("/images/oa-footer-banner.png")}
             alt="OrthoAlliance partnership banner"
             className="w-full rounded-lg mb-12"
           />

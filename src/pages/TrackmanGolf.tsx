@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { ArrowRight, Target, Users, Trophy, MonitorPlay } from "lucide-react";
@@ -37,7 +38,7 @@ const TrackmanGolf = () => {
       <PageHero
         title="Trackman Golf"
         subtitle="State-of-the-art golf simulators powered by Trackman technology"
-        image="/images/trackman-hero.png"
+        image={publicAsset("/images/trackman-hero.png")}
       />
 
       {/* Intro */}
@@ -103,7 +104,7 @@ const TrackmanGolf = () => {
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
           <img loading="lazy" decoding="async"
-            src="/images/facility-aerial.jpg"
+            src={publicAsset("/images/facility-aerial.jpg")}
             alt="Match Point facility"
             className="w-full h-full object-cover"
           />

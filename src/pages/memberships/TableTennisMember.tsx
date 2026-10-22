@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import { Check } from "lucide-react";
@@ -8,7 +9,7 @@ const COURTRESERVE_URL = "https://app.courtreserve.com/Online/Memberships/Public
 
 const TableTennisMember = () => (
   <Layout>
-    <PageHero title="Table Tennis Member" subtitle="Individual Membership" image="/images/table-tennis-hero.png" />
+    <PageHero title="Table Tennis Member" subtitle="Individual Membership" image={publicAsset("/images/table-tennis-hero.png")} />
     <section className="py-16">
       <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5 }}>

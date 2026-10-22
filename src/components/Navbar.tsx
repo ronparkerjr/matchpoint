@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, ChevronDown } from "lucide-react";
@@ -241,7 +242,7 @@ const Navbar = () => {
             onClick={scrollTop}
           >
             <img
-              src="/images/match-point-logo.png"
+              src={publicAsset("/images/match-point-logo.png")}
               alt="Match Point"
               className="h-10"
             />

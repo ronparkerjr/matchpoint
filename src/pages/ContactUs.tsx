@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import ContactForm from "@/components/ContactForm";
@@ -6,7 +7,7 @@ import { MapPin, Phone, Mail } from "lucide-react";
 const ContactUs = () => {
   return (
     <Layout>
-      <PageHero title="Contact Us" subtitle="Have a question, suggestion, or just want to say hello? We'd love to hear from you." image="/images/contact-hero.png" />
+      <PageHero title="Contact Us" subtitle="Have a question, suggestion, or just want to say hello? We'd love to hear from you." image={publicAsset("/images/contact-hero.png")} />
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-5xl mx-auto">

@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Layout from "@/components/Layout";
@@ -5,13 +6,13 @@ import PageHero from "@/components/PageHero";
 import { X, ChevronLeft, ChevronRight } from "lucide-react";
 
 const nepaliPhotos = [
-  { src: "/images/nepali-arnold-podium-1.jpg", alt: "Podium – Men's Singles 3.0 Age 50+" },
-  { src: "/images/nepali-arnold-podium-2.jpg", alt: "Gopal Timsina – Men's Singles 3.5+" },
-  { src: "/images/nepali-arnold-podium-3.jpg", alt: "Mixed Doubles podium" },
-  { src: "/images/nepali-arnold-podium-4.jpg", alt: "Men's Doubles 3.0 Age 50+" },
-  { src: "/images/nepali-arnold-podium-5.jpg", alt: "Narayan & Laxmi – Men's Doubles" },
-  { src: "/images/nepali-arnold-podium-6.jpg", alt: "Singles podium celebration" },
-  { src: "/images/nepali-arnold-podium-7.jpg", alt: "Men's Singles podium" },
+  { src: publicAsset("/images/nepali-arnold-podium-1.jpg"), alt: "Podium – Men's Singles 3.0 Age 50+" },
+  { src: publicAsset("/images/nepali-arnold-podium-2.jpg"), alt: "Gopal Timsina – Men's Singles 3.5+" },
+  { src: publicAsset("/images/nepali-arnold-podium-3.jpg"), alt: "Mixed Doubles podium" },
+  { src: publicAsset("/images/nepali-arnold-podium-4.jpg"), alt: "Men's Doubles 3.0 Age 50+" },
+  { src: publicAsset("/images/nepali-arnold-podium-5.jpg"), alt: "Narayan & Laxmi – Men's Doubles" },
+  { src: publicAsset("/images/nepali-arnold-podium-6.jpg"), alt: "Singles podium celebration" },
+  { src: publicAsset("/images/nepali-arnold-podium-7.jpg"), alt: "Men's Singles podium" },
 ];
 
 const medals = [
@@ -36,7 +37,7 @@ const PlayerShowcase = () => {
       <PageHero
         title="Player Showcase"
         subtitle="Highlighting the talented players in our Match Point community."
-        image="/images/player-showcase-hero.png"
+        image={publicAsset("/images/player-showcase-hero.png")}
       />
 
       <section className="py-16 bg-background">

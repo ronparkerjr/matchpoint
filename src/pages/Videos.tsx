@@ -1,10 +1,11 @@
+import { publicAsset } from "@/lib/publicAsset";
 import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 
 const Videos = () => {
   return (
     <Layout>
-      <PageHero title="Videos" subtitle="Watch highlights, recaps, and more from Match Point." image="/images/videos-hero.png" />
+      <PageHero title="Videos" subtitle="Watch highlights, recaps, and more from Match Point." image={publicAsset("/images/videos-hero.png")} />
       <section className="py-24 bg-background">
         <div className="container mx-auto px-4 max-w-4xl space-y-12">
           <div>

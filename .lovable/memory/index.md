@@ -6,7 +6,7 @@ Updated: today
 ## Core
 - Light theme, white bg, black text, red accents (#C41E24). Sporty aesthetic.
 - Brand details: 38 indoor championship-size courts with CushionX surface, 350 McCormick Blvd, Columbus, OH, 614-569-2556, support@matchpointpickleballclub.com.
-- Architecture: Supabase Edge Functions / Lovable Cloud for secure APIs.
+- Architecture: Static React website. Contact and nomination submission is temporarily unavailable; no backend is configured.
 - Build: Use `@vitejs/plugin-react` (Babel) instead of SWC to avoid native binding errors.
 - UI Layout: Use `border-border` dividers between adjacent white-background sections.
 - Media: All YouTube embeds must include `rel=0&modestbranding=1`.
@@ -19,7 +19,7 @@ Updated: today
 - [Media Assets](mem://constraints/media-assets) — External repository for high-res gallery images
 - [Memberships Page](mem://features/memberships-page) — 9 plans, pricing, CourtReserve links, 'Unlimited Plus'
 - [OrthoAlliance Partner](mem://features/orthoalliance-partner-section) — Partner section styling and dedicated page
-- [Contact Us Page](mem://features/contact-us-page) — Resend email integration via Edge Function
+- [Contact Us Page](mem://features/contact-us-page) — Form layout retained; submission temporarily unavailable
 - [Videos Page](mem://features/videos-page) — Fixed dimensions (320x476) for Facebook Reels embeds
 - [Navigation Layout](mem://style/navigation-layout) — Two-row desktop nav structure, 120px CTA buttons
 - [Shopify Integration](mem://integrations/shopify-store) — Zustand cart, OAuth edge function, static fallbacks

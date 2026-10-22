@@ -1,3 +1,4 @@
+import { publicAsset } from "@/lib/publicAsset";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
@@ -18,7 +19,7 @@ import Layout from "@/components/Layout";
 import PageHero from "@/components/PageHero";
 import { Button } from "@/components/ui/button";
 
-const DECK_PDF = "/downloads/match-point-sponsorship-deck.pdf";
+const DECK_PDF = publicAsset("/downloads/match-point-sponsorship-deck.pdf");
 const CONTACT = "support@matchpointpickleballclub.com";
 
 const numbers = [
