@@ -541,7 +541,7 @@ const Index = () => {
                 <CarouselItem key={t.name} className="md:basis-1/2">
                   <figure className="bg-card border border-border rounded-lg p-8 h-full flex flex-col">
                     <Quote className="text-primary mb-4" size={28} aria-hidden="true" />
-                    <blockquote className="text-foreground text-lg leading-relaxed mb-6 flex-1">
+                    <blockquote className="text-foreground text-lg leading-relaxed mb-4">
                       "{t.quote}"
                     </blockquote>
                     <figcaption className="text-sm">
