@@ -1,6 +1,5 @@
 import { publicAsset } from "@/lib/publicAsset";
 import { useRef, useEffect } from "react";
-import heroVideo from "@/assets/matchpoint-tv-sport-30sec.mp4.asset.json";
 
 const VideoBackground = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -15,7 +14,7 @@ const VideoBackground = () => {
   return (
     <video
       ref={videoRef}
-      src={heroVideo.url}
+      src={publicAsset("/videos/features/matchpoint-tv-sport-30sec.mp4")}
       className="absolute inset-0 w-full h-full object-cover"
       autoPlay
       muted

@@ -4,9 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Award, Calendar, Briefcase, Heart, Quote, Trophy } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
-import katieVideo from "@/assets/katie-ventre-employee-of-the-month.mp4.asset.json";
 import { publicAsset } from "@/lib/publicAsset";
-import bridgettVideo from "@/assets/bridgett-employee-of-the-month.mp4.asset.json";
 
 type Employee = {
   name: string;
@@ -32,7 +30,7 @@ const currentEmployee: Employee = {
     "She was chosen because she simply does everything she can to help everyone.",
   quote:
     "It's made my community bigger.",
-  videoUrl: katieVideo.url,
+  videoUrl: publicAsset("/videos/features/katie-ventre-employee-of-the-month.mp4"),
   photoUrl: publicAsset("/images/katie-ventre-employee-of-the-month-thumbnail.jpg"),
 };
 
@@ -41,7 +39,7 @@ const pastEmployees: { name: string; month: string; role: string; videoUrl?: str
     name: "Bridgett Del Pozo",
     month: "June 2026",
     role: "Court Monitor Manager, head of the Ladies league and squirrel expert",
-    videoUrl: bridgettVideo.url,
+    videoUrl: publicAsset("/videos/features/bridgett-employee-of-the-month.mp4"),
   },
 ];
 
