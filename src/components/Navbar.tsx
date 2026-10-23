@@ -301,7 +301,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-background border-t border-border-subtle max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
+        <div className="lg:hidden bg-background border-t border-border-subtle max-h-[calc(100dvh-8rem-env(safe-area-inset-bottom))] sm:max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
           <nav id="mobile-navigation" aria-label="Mobile navigation" className="flex flex-col px-6 py-4 gap-2">
             <Link
               to="/memberships"
