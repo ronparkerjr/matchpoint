@@ -234,8 +234,8 @@ const Navbar = () => {
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border-subtle">
-      <div className="container mx-auto px-4 lg:px-8">
-        <div className="flex items-center h-16">
+      <div className="mx-auto w-full max-w-[1400px] pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] lg:px-8">
+        <div className="flex min-w-0 items-center h-16">
           <Link
             to="/"
             className="flex items-center shrink-0 lg:w-[200px]"
@@ -284,10 +284,10 @@ const Navbar = () => {
           </div>
 
           {/* Mobile: Toggle */}
-          <div className="lg:hidden flex items-center gap-2 ml-auto">
+          <div className="lg:hidden flex shrink-0 items-center ml-auto">
             <button
               type="button"
-              className="text-foreground"
+              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-md text-foreground hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
               onClick={() => setMobileOpen(!mobileOpen)}
               aria-label={mobileOpen ? "Close menu" : "Open menu"}
               aria-expanded={mobileOpen}
@@ -301,7 +301,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileOpen && (
-        <div className="lg:hidden bg-background border-t border-border-subtle max-h-[calc(100vh-4rem)] overflow-y-auto">
+        <div className="lg:hidden bg-background border-t border-border-subtle max-h-[calc(100dvh-4rem)] overflow-y-auto overscroll-contain pb-[env(safe-area-inset-bottom)]">
           <nav id="mobile-navigation" aria-label="Mobile navigation" className="flex flex-col px-6 py-4 gap-2">
             <Link
               to="/memberships"
