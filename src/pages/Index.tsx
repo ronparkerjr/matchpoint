@@ -536,10 +536,10 @@ const Index = () => {
             <h2 id="testimonials-heading" className="font-display text-4xl md:text-5xl text-bright">Player Testimonials</h2>
           </div>
           <Carousel opts={{ loop: true, align: "start" }} className="px-10">
-            <CarouselContent>
+            <CarouselContent className="items-start">
               {testimonials.map((t) => (
                 <CarouselItem key={t.name} className="md:basis-1/2">
-                  <figure className="bg-card border border-border rounded-lg p-8 h-full flex flex-col">
+                  <figure className="bg-card border border-border rounded-lg p-8 flex flex-col">
                     <Quote className="text-primary mb-4" size={28} aria-hidden="true" />
                     <blockquote className="text-foreground text-lg leading-relaxed mb-4">
                       "{t.quote}"
