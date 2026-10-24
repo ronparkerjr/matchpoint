@@ -9,6 +9,7 @@ import ContactForm from "@/components/ContactForm";
 import LocalProgramLinks from "@/components/LocalProgramLinks";
 import AnniversaryTournamentPromo from "@/components/AnniversaryTournamentPromo";
 import {
+  type CarouselApi,
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -108,6 +109,41 @@ const waysToPlay = [
 
 const Index = () => {
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+  const [testimonialApi, setTestimonialApi] = useState<CarouselApi>();
+  const [testimonialHeight, setTestimonialHeight] = useState<number>();
+
+  useEffect(() => {
+    if (!testimonialApi) return;
+
+    // Offscreen reviews can be much longer than the currently visible cards.
+    const updateHeight = () => {
+      const viewport = testimonialApi.rootNode().getBoundingClientRect();
+      const heights = testimonialApi.slideNodes().map((slide) => {
+        const card = slide.querySelector("figure")?.getBoundingClientRect();
+        if (!card) return 0;
+        const visibleWidth = Math.min(card.right, viewport.right) - Math.max(card.left, viewport.left);
+        return visibleWidth > 1 ? card.height : 0;
+      });
+      const height = Math.max(0, ...heights);
+      if (height > 0) setTestimonialHeight(height);
+    };
+    const observer = new ResizeObserver(updateHeight);
+    testimonialApi.slideNodes().forEach((slide) => {
+      const card = slide.querySelector("figure");
+      if (card) observer.observe(card);
+    });
+    testimonialApi.on("slidesInView", updateHeight);
+    testimonialApi.on("scroll", updateHeight);
+    testimonialApi.on("reInit", updateHeight);
+    updateHeight();
+
+    return () => {
+      observer.disconnect();
+      testimonialApi.off("slidesInView", updateHeight);
+      testimonialApi.off("scroll", updateHeight);
+      testimonialApi.off("reInit", updateHeight);
+    };
+  }, [testimonialApi]);
 
   useEffect(() => {
     if (lightboxIndex === null) return;
@@ -535,8 +571,8 @@ const Index = () => {
             <p className="text-primary font-semibold text-sm tracking-widest uppercase mb-2">From Our Members</p>
             <h2 id="testimonials-heading" className="font-display text-4xl md:text-5xl text-bright">Player Testimonials</h2>
           </div>
-          <Carousel opts={{ loop: true, align: "start" }} className="px-10">
-            <CarouselContent className="items-start">
+          <Carousel opts={{ loop: true, align: "start" }} setApi={setTestimonialApi} className="px-10">
+            <CarouselContent className="items-start" style={{ height: testimonialHeight }}>
               {testimonials.map((t) => (
                 <CarouselItem key={t.name} className="md:basis-1/2">
                   <figure className="bg-card border border-border rounded-lg p-8 flex flex-col">
